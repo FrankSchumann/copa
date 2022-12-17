@@ -2,6 +2,7 @@
 
 #include<vector>
 #include<string>
+#include <memory>
 
 #include "Plugin.h"
 
@@ -21,9 +22,11 @@ public:
 	void closePlugin( std::string const &plugin );
 
 private:
-	static std::vector<Plugin> plugins;
+	static std::vector<std::shared_ptr<Plugin>> plugins;
 
 	std::string folder;
+
+	void scanFolder();
 };
 
 }
