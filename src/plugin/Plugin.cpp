@@ -14,3 +14,8 @@ void Plugin::load()
 {
 	std::cout << "load plugin from file " << file <<std::endl;
 }
+
+void Plugin::close()
+{
+	std::cout << "close plugin from file " << file <<std::endl;
+}

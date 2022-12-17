@@ -37,7 +37,10 @@ void Controller::loadPlugin( std::string const &plugin )
 
 void Controller::closePlugins()
 {
-
+	for( auto &plugin : plugins )
+	{
+		plugin->close();
+	}
 }
 
 void Controller::closePlugin( std::string const &plugin )

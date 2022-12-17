@@ -9,6 +9,7 @@ public:
 	virtual ~Plugin();
 
 	void load();
+	void close();
 
 private:
 	std::string file;
