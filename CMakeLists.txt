@@ -5,8 +5,8 @@ project(COPA)
 set(CMAKE_BUILD_TYPE Debug)
 
 #Manually add sources using the set command as follows:
-# set( SOURCES src/main.cpp src/Component/Manager.cpp)
+#set( SOURCES "src/*.cpp" "src/plugin/Plugin.cpp" )
 
-file(GLOB SOURCES "src/*.cpp")
+file(GLOB SOURCES "src/*.cpp" "src/plugin/*.cpp")
 
 add_executable(copa ${SOURCES})
