@@ -11,7 +11,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
 #Manually add sources using the set command as follows:
 #set( SOURCES "src/*.cpp" "src/plugin/Plugin.cpp" )
 
-file(GLOB SOURCES "src/*.cpp" "src/plugin/*.cpp")
+file(GLOB SOURCES "src/*.cpp" "src/plugin/*.cpp" "src/factory/*.cpp")
 
 add_executable(copa ${SOURCES})
 
@@ -19,6 +19,6 @@ add_executable(copa ${SOURCES})
 configure_file(config.h.in config.h)
 
 # Include the configuration header in the build
-target_include_directories(copa PUBLIC "${PROJECT_BINARY_DIR}")
+target_include_directories(copa PUBLIC "${PROJECT_BINARY_DIR}" COPA-PDK)
 
 message("CMAKE_PROJECT_VERSION = ${CMAKE_PROJECT_VERSION}")
