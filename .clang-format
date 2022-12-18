@@ -7,7 +7,6 @@ ColumnLimit: 119
 Cpp11BracedListStyle: true
 FixNamespaceComments: false
 IndentWidth: 4
-SpaceAroundPointerQualifiers: Default
 SpacesInAngles: true
 SpacesInContainerLiterals: true
 SpacesInCStyleCastParentheses: true
