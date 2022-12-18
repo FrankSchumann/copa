@@ -1,0 +1,19 @@
+# Format Style Options - Created with Clang Power Tools
+---
+AllowShortFunctionsOnASingleLine: None
+BasedOnStyle: Google
+BreakBeforeBraces: Allman
+ColumnLimit: 119
+Cpp11BracedListStyle: true
+FixNamespaceComments: false
+IndentWidth: 4
+SpaceAroundPointerQualifiers: Default
+SpacesInAngles: true
+SpacesInContainerLiterals: true
+SpacesInCStyleCastParentheses: true
+SpacesInConditionalStatement: true
+SpacesInParentheses: true
+SpacesInSquareBrackets: true
+TabWidth: 4
+UseTab: Never
+...
