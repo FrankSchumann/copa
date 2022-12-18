@@ -54,7 +54,7 @@ void Controller::scanFolder()
 	{
 		std::cout << file.path().string() << std::endl;
 
-		std::shared_ptr<Plugin> plugin = std::make_shared<Plugin>( file.path().string() );
+		std::shared_ptr<Plugin> plugin = std::make_shared<Plugin>( file.path() );
 
 		plugins.push_back( plugin );
 	}

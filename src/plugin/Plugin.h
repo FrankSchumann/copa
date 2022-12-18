@@ -1,16 +1,17 @@
 #pragma once
 
-#include<string>
+#include <filesystem>
+#include <string>
 
 class Plugin
 {
-public:
-	Plugin( std::string const &_file );
-	virtual ~Plugin();
+   public:
+    Plugin( std::filesystem::path const &_file );
+    virtual ~Plugin();
 
-	void load();
-	void close();
+    void load();
+    void close();
 
-private:
-	std::string file;
+   private:
+    std::filesystem::path file;
 };
