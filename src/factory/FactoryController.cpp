@@ -12,8 +12,9 @@ FactoryController::~FactoryController()
 {
 }
 
-void FactoryController::subscribe()
+void FactoryController::subscribe(std::shared_ptr<FactoryIf> const factory)
 {
+	factories.push_back(factory);
 }
 
 }
