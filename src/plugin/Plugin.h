@@ -17,9 +17,10 @@ class Plugin
    private:
     std::filesystem::path file;
     void *handle = nullptr;
-    std::string name = std::string("");
-    std::string version = std::string("");;
+    std::string name = std::string( "" );
+    std::string version = std::string( "" );
 
-    void setName( std::string const &_name );
-    void setVersion( std::string const &_version );
+    void subscribe();
+    void receiveName();
+    void receiveVersion();
 };

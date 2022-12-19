@@ -23,15 +23,9 @@ void Plugin::load()
 
     if ( nullptr != handle )
     {
-        void* subscribeFunctionSymbol = dlsym( handle, "subscribePlugin" );
-
-        subscribeFunctionType subscribeFunction = ( subscribeFunctionType )subscribeFunctionSymbol;
-
-        subscribeFunction();
-
-        setName( "Test" );
-
-        setVersion( "0.0.0.0" );
+        receiveName();
+        receiveVersion();
+        subscribe();
     }
     else
     {
@@ -55,18 +49,41 @@ void Plugin::show()
 
 void Plugin::subscribe()
 {
+    typedef void ( *subscribeFunctionType )();
+    void* subscribeFunctionSymbol = dlsym( handle, "subscribePlugin" );
+
+    if ( nullptr != subscribeFunctionSymbol )
+    {
+        subscribeFunctionType subscribeFunction = ( subscribeFunctionType )subscribeFunctionSymbol;
+
+        subscribeFunction();
+    }
 }
 
-void Plugin::identifyName()
+void Plugin::receiveName()
 {
+    typedef const char* ( *getNameType )();
+    void* getNameSymbol = dlsym( handle, "getName" );
+
+    if ( nullptr != getNameSymbol )
+    {
+        getNameType getNameFunction = ( getNameType )getNameSymbol;
+
+        const char* nameTmp = getNameFunction();
+        name.assign( nameTmp );
+    }
 }
 
-void Plugin::setName( std::string const& _name )
+void Plugin::receiveVersion()
 {
-    name = _name;
-}
+    typedef const char* ( *getVersionType )();
+    void* getVersionSymbol = dlsym( handle, "getVersion" );
 
-void Plugin::setVersion( std::string const& _version )
-{
-    version = _version;
+    if ( nullptr != getVersionSymbol )
+    {
+        getVersionType getVersionFunction = ( getVersionType )getVersionSymbol;
+
+        const char* versionTmp = getVersionFunction();
+        version.assign( versionTmp );
+    }
 }
