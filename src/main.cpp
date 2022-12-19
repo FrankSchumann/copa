@@ -3,6 +3,7 @@
 
 #include "config.h"
 #include "copa-pdk/factory/FactoryController.h"
+#include "copa-pdk/component/ComponentController.h"
 
 #include "plugin/PluginController.h"
 int main( int argc, char *argv[] )
@@ -22,6 +23,10 @@ int main( int argc, char *argv[] )
     std::shared_ptr<COPA::FactoryController> const factoryController = std::make_shared<COPA::FactoryController>();
 
     factoryController->list();
+
+    COPA::ComponentController componentController;
+
+    componentController.list();
 
     return 0;
 }

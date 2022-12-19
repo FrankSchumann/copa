@@ -1,5 +1,7 @@
 #include "copa-pdk/component/ComponentController.h"
 
+#include <iostream>
+
 #include "copa-pdk/factory/FactoryController.h"
 
 namespace COPA
@@ -36,7 +38,7 @@ std::shared_ptr< ComponentIf > ComponentController::get( std::string const &type
 
     if ( false == componentsSameType.empty() )
     {
-    	result = getComponent(name, componentsSameType);
+        result = getComponent( name, componentsSameType );
     }
 
     return result;
@@ -67,6 +69,21 @@ std::shared_ptr< ComponentIf > ComponentController::getComponent( std::string co
     }
 
     return result;
+}
+
+void ComponentController::list()
+{
+    std::cout << "ComponentController::list" << std::endl;
+
+    for ( auto const &[ type, componetsSameType ] : components )
+    {
+        std::cout << "Type: " << type << std::endl;
+
+        for ( auto const &[ name, componet ] : componetsSameType )
+        {
+            std::cout << "Name: " << name << std::endl;
+        }
+    }
 }
 
 }
