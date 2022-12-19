@@ -77,7 +77,7 @@ void ComponentController::list()
 
     for ( auto const &[ type, componetsSameType ] : components )
     {
-        std::cout << "Type: " << type << std::endl;
+        std::cout << std::endl << "Type: " << type << std::endl;
 
         for ( auto const &[ name, componet ] : componetsSameType )
         {
