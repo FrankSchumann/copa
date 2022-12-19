@@ -19,7 +19,7 @@ add_executable(copa ${SOURCES})
 configure_file(config.h.in config.h)
 
 # Include the configuration header in the build
-target_include_directories(copa PUBLIC "${PROJECT_BINARY_DIR}" COPA-PDK)
+target_include_directories(copa PUBLIC "${PROJECT_BINARY_DIR}" include)
 
 set_target_properties( copa PROPERTIES ENABLE_EXPORTS 1 )
 

@@ -2,10 +2,9 @@
 #include <memory>
 
 #include "config.h"
-#include "factory/FactoryController.h"
+#include "copa-pdk/factory/FactoryController.h"
 
-#include "plugin/PluginPluginController.h"
-
+#include "plugin/PluginController.h"
 int main( int argc, char *argv[] )
 {
     std::cout << "COPA - " << APPLICATION_DESCRIPTION  << std::endl;
