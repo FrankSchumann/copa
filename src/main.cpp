@@ -14,7 +14,7 @@ int main( int argc, char *argv[] )
 
     std::string const pluginsFolder( "plugins" );
 
-    plugin::PluginController pluginController( pluginsFolder );
+    COPA::PluginController pluginController( pluginsFolder );
 
     pluginController.loadPlugins();
 

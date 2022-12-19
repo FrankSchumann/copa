@@ -3,7 +3,7 @@
 #include <iostream>
 #include <filesystem>
 
-namespace plugin
+namespace COPA
 {
 
 std::vector<std::shared_ptr<Plugin>> PluginController::plugins;

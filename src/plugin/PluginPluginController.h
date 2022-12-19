@@ -6,7 +6,7 @@
 
 #include "Plugin.h"
 
-namespace plugin
+namespace COPA
 {
 
 class PluginController
