@@ -12,8 +12,7 @@ class Plugin
     void load();
     void close();
 
-    std::string getName() const;
-    std::string getVersion() const;
+    void show();
 
    private:
     std::filesystem::path file;

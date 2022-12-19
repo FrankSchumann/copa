@@ -17,6 +17,8 @@ int main( int argc, char *argv[] )
 
     pluginController.loadPlugins();
 
+    pluginController.list();
+
     std::shared_ptr<COPA::FactoryController> const factoryController = std::make_shared<COPA::FactoryController>();
 
     factoryController->list();

@@ -21,6 +21,8 @@ public:
 	void closePlugins();
 	void closePlugin( std::string const &plugin );
 
+	void list();
+
 private:
 	static std::vector<std::shared_ptr<Plugin>> plugins;
 

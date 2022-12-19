@@ -48,14 +48,9 @@ void Plugin::close()
     std::cout << "close plugin from file " << file.string() << std::endl;
 }
 
-std::string Plugin::getName() const
+void Plugin::show()
 {
-	return name;
-}
-
-std::string Plugin::getVersion() const
-{
-    return version;
+	std::cout << "Plugin: " << name << " File: " << file.string() << " Version: " << version << std::endl;
 }
 
 void Plugin::setName( std::string const& _name )
