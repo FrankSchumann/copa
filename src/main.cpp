@@ -2,8 +2,8 @@
 #include <memory>
 
 #include "config.h"
-#include "plugin/Controller.h"
 #include "factory/FactoryController.h"
+#include "plugin/PluginController.h"
 
 int main( int argc, char *argv[] )
 {
