@@ -29,9 +29,9 @@ void Plugin::load()
 
         subscribeFunction();
 
-        setName("Test");
+        setName( "Test" );
 
-        setVersion("0.0.0.0");
+        setVersion( "0.0.0.0" );
     }
     else
     {
@@ -50,15 +50,23 @@ void Plugin::close()
 
 void Plugin::show()
 {
-	std::cout << "Plugin: " << name << " File: " << file.string() << " Version: " << version << std::endl;
+    std::cout << "Plugin: " << name << " File: " << file.string() << " Version: " << version << std::endl;
+}
+
+void Plugin::subscribe()
+{
+}
+
+void Plugin::identifyName()
+{
 }
 
 void Plugin::setName( std::string const& _name )
 {
-	name = _name;
+    name = _name;
 }
 
 void Plugin::setVersion( std::string const& _version )
 {
-	version = _version;
+    version = _version;
 }
