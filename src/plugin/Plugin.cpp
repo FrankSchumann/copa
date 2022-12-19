@@ -28,6 +28,10 @@ void Plugin::load()
         subscribeFunctionType subscribeFunction = ( subscribeFunctionType )subscribeFunctionSymbol;
 
         subscribeFunction();
+
+        setName("Test");
+
+        setVersion("0.0.0.0");
     }
     else
     {
@@ -44,16 +48,6 @@ void Plugin::close()
     std::cout << "close plugin from file " << file.string() << std::endl;
 }
 
-void Plugin::setName( std::string const& _name )
-{
-	name = _name;
-}
-
-void Plugin::setVersion( std::string const& _version )
-{
-	version = _version;
-}
-
 std::string Plugin::getName() const
 {
 	return name;
@@ -62,4 +56,14 @@ std::string Plugin::getName() const
 std::string Plugin::getVersion() const
 {
     return version;
+}
+
+void Plugin::setName( std::string const& _name )
+{
+	name = _name;
+}
+
+void Plugin::setVersion( std::string const& _version )
+{
+	version = _version;
 }
