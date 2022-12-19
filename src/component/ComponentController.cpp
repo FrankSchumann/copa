@@ -2,6 +2,8 @@
 
 namespace COPA
 {
+std::map< std::string, std::shared_ptr< ComponentIf > > ComponentController::components;
+
 ComponentController::ComponentController()
 {
 }
