@@ -3,7 +3,7 @@
 AllowShortFunctionsOnASingleLine: None
 BasedOnStyle: Google
 BreakBeforeBraces: Allman
-ColumnLimit: 119
+ColumnLimit: 159
 Cpp11BracedListStyle: true
 FixNamespaceComments: false
 IndentWidth: 4
