@@ -1,7 +1,9 @@
 #include <iostream>
+#include <memory>
 
 #include "config.h"
 #include "plugin/Controller.h"
+#include "factory/FactoryController.h"
 
 int main( int argc, char *argv[] )
 {
@@ -9,11 +11,15 @@ int main( int argc, char *argv[] )
     std::cout << "Version: " << APPLICATION_VERSION << std::endl;
     std::cout << std::endl;
 
-    std::string pluginsFolder( "plugins" );
+    std::string const pluginsFolder( "plugins" );
 
     plugin::Controller pluginController( pluginsFolder );
 
     pluginController.loadPlugins();
+
+    std::shared_ptr<COPA::FactoryController> const factoryController = std::make_shared<COPA::FactoryController>();
+
+    factoryController->list();
 
     return 0;
 }

@@ -21,16 +21,18 @@ void FactoryController::doSomething()
 
 void FactoryController::subscribe( std::shared_ptr< FactoryIf > const factory )
 {
-    std::cout << "subscribe " << factory->getName() << std::endl;
+    std::cout << "FactoryController::subscribe " << factory->getType() << std::endl;
 
     factories.push_back( factory );
 }
 
 void FactoryController::list()
 {
+	std::cout << "FactoryController::list " << std::endl;
+
     for ( auto const factory : factories )
     {
-        std::cout << "Factory: " << factory->getName() << std::endl;
+        std::cout << "Factory: " << factory->getType() << std::endl;
     }
 }
 
