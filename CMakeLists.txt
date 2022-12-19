@@ -11,7 +11,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
 #Manually add sources using the set command as follows:
 #set( SOURCES "src/*.cpp" "src/plugin/Plugin.cpp" )
 
-file(GLOB SOURCES "src/*.cpp" "src/plugin/*.cpp" "src/factory/*.cpp")
+file(GLOB SOURCES "src/*.cpp" "src/plugin/*.cpp" "src/component/*.cpp" "src/factory/*.cpp")
 
 add_executable(copa ${SOURCES})
 
