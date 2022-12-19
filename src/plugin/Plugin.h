@@ -23,4 +23,6 @@ class Plugin
     void subscribe();
     void receiveName();
     void receiveVersion();
+
+    void receiveString(std::string const &functionName, std::string &destination);
 };

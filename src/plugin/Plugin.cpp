@@ -62,28 +62,24 @@ void Plugin::subscribe()
 
 void Plugin::receiveName()
 {
-    typedef const char* ( *getNameType )();
-    void* getNameSymbol = dlsym( handle, "getName" );
-
-    if ( nullptr != getNameSymbol )
-    {
-        getNameType getNameFunction = ( getNameType )getNameSymbol;
-
-        const char* nameTmp = getNameFunction();
-        name.assign( nameTmp );
-    }
+    receiveString( std::string( "getName" ), version );
 }
 
 void Plugin::receiveVersion()
 {
-    typedef const char* ( *getVersionType )();
-    void* getVersionSymbol = dlsym( handle, "getVersion" );
+    receiveString( std::string( "getVersion" ), version );
+}
 
-    if ( nullptr != getVersionSymbol )
+void Plugin::receiveString( std::string const& functionName, std::string& destination )
+{
+    typedef const char* ( *getStringFunctionType )();
+    void* getStringFunctionSymbol = dlsym( handle, functionName.c_str() );
+
+    if ( nullptr != getStringFunctionSymbol )
     {
-        getVersionType getVersionFunction = ( getVersionType )getVersionSymbol;
+        getStringFunctionType getStringFunction = ( getStringFunctionType )getStringFunctionSymbol;
 
-        const char* versionTmp = getVersionFunction();
-        version.assign( versionTmp );
+        const char* stringTmp = getStringFunction();
+        destination.assign( stringTmp );
     }
 }
