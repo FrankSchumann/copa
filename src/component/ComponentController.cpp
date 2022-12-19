@@ -5,13 +5,13 @@
 namespace COPA
 {
 std::map< std::string, std::shared_ptr< ComponentIf > > ComponentController::components;
+std::map< std::string, std::map< std::string, std::shared_ptr< ComponentIf > > > ComponentController::components2;
 
 ComponentController::ComponentController() : ComponentController( std::make_shared< FactoryController >() )
 {
 }
 
-ComponentController::ComponentController( std::shared_ptr< FactoryControllerIf > const &_factoryController )
-    : factoryController( _factoryController )
+ComponentController::ComponentController( std::shared_ptr< FactoryControllerIf > const &_factoryController ) : factoryController( _factoryController )
 {
 }
 
@@ -19,21 +19,52 @@ ComponentController::~ComponentController()
 {
 }
 
-void ComponentController::create( std::string const &name, std::string const &type )
+void ComponentController::create( std::string const &type, std::string const &name )
 {
     std::shared_ptr< FactoryIf > factory = factoryController->get( type );
 
     std::shared_ptr< ComponentIf > component = factory->create( name );
 
     components[ name ] = component;
+
+    components2.insert( std::make_pair( type, std::map< std::string, std::shared_ptr< ComponentIf > >() ) );
+    components2[ type ].insert( std::make_pair( name, component ) );
 }
 
-std::shared_ptr< ComponentIf > ComponentController::get( std::string const &name )
+std::shared_ptr< ComponentIf > ComponentController::get( std::string const &type, std::string const &name )
 {
     std::shared_ptr< ComponentIf > result( nullptr );
 
-    auto it = components.find( name );
-    if ( it != components.end() )
+    auto const componentsSameType = getComponentsSameType( type );
+
+    if ( false == componentsSameType.empty() )
+    {
+    	result = getComponent(name, componentsSameType);
+    }
+
+    return result;
+}
+
+std::map< std::string, std::shared_ptr< ComponentIf > > ComponentController::getComponentsSameType( std::string const &type )
+{
+    std::map< std::string, std::shared_ptr< ComponentIf > > result;
+
+    auto it = components2.find( type );
+    if ( it != components2.end() )
+    {
+        result = it->second;
+    }
+
+    return result;
+}
+
+std::shared_ptr< ComponentIf > ComponentController::getComponent( std::string const &name,
+                                                                  std::map< std::string, std::shared_ptr< ComponentIf > > const &componentsSameType )
+{
+    std::shared_ptr< ComponentIf > result;
+
+    auto it = componentsSameType.find( name );
+    if ( it != componentsSameType.end() )
     {
         result = it->second;
     }
