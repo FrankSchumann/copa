@@ -25,12 +25,20 @@ void ComponentController::create( std::string const &name, std::string const &ty
 
     std::shared_ptr< ComponentIf > component = factory->create( name );
 
-    components[name] = component;
+    components[ name ] = component;
 }
 
 std::shared_ptr< ComponentIf > ComponentController::get( std::string const &name )
 {
-    return nullptr;
+    std::shared_ptr< ComponentIf > result( nullptr );
+
+    auto it = components.find( name );
+    if ( it != components.end() )
+    {
+        result = it->second;
+    }
+
+    return result;
 }
 
 }

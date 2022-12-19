@@ -30,16 +30,15 @@ void FactoryController::subscribe( std::shared_ptr< FactoryIf > const factory )
 
 std::shared_ptr< FactoryIf > FactoryController::get( std::string const &type )
 {
-	std::shared_ptr<FactoryIf> result(nullptr);
+    std::shared_ptr< FactoryIf > result( nullptr );
 
-	auto it = factories.find(type);
-	if (it != factories.end())
-	{
-		result = it->second;
-	}
+    auto it = factories.find( type );
+    if ( it != factories.end() )
+    {
+        result = it->second;
+    }
 
-	return result;
-
+    return result;
 }
 
 void FactoryController::list()
