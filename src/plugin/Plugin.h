@@ -14,4 +14,5 @@ class Plugin
 
    private:
     std::filesystem::path file;
+    void* handle = nullptr;
 };

@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.12)
 
 # Set some basic project attributes
 project(COPA 
-		VERSION 0.0.0.1
+		VERSION 0.0.0.2
 		DESCRIPTION "Controller Platform")
 
 set(CMAKE_BUILD_TYPE Debug)
@@ -20,5 +20,10 @@ configure_file(config.h.in config.h)
 
 # Include the configuration header in the build
 target_include_directories(copa PUBLIC "${PROJECT_BINARY_DIR}" COPA-PDK)
+
+set_target_properties( copa PROPERTIES ENABLE_EXPORTS 1 )
+
+# Include libraries
+target_link_libraries(copa -ldl)
 
 message("CMAKE_PROJECT_VERSION = ${CMAKE_PROJECT_VERSION}")
