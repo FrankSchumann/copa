@@ -3,7 +3,8 @@
 
 #include "config.h"
 #include "factory/FactoryController.h"
-#include "plugin/PluginController.h"
+
+#include "plugin/PluginPluginController.h"
 
 int main( int argc, char *argv[] )
 {
@@ -13,7 +14,7 @@ int main( int argc, char *argv[] )
 
     std::string const pluginsFolder( "plugins" );
 
-    plugin::Controller pluginController( pluginsFolder );
+    plugin::PluginController pluginController( pluginsFolder );
 
     pluginController.loadPlugins();
 

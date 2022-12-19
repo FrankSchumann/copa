@@ -1,4 +1,4 @@
-#include "PluginController.h"
+#include "PluginPluginController.h"
 
 #include <iostream>
 #include <filesystem>
@@ -6,19 +6,19 @@
 namespace plugin
 {
 
-std::vector<std::shared_ptr<Plugin>> Controller::plugins;
+std::vector<std::shared_ptr<Plugin>> PluginController::plugins;
 
-Controller::Controller( std::string const &_folder ) : folder(_folder)
+PluginController::PluginController( std::string const &_folder ) : folder(_folder)
 {
 
 }
 
-Controller::~Controller()
+PluginController::~PluginController()
 {
 
 }
 
-void Controller::loadPlugins()
+void PluginController::loadPlugins()
 {
 	std::cout << "loadPlugins from folder " << folder << std::endl;
 
@@ -30,12 +30,12 @@ void Controller::loadPlugins()
 	}
 }
 
-void Controller::loadPlugin( std::string const &plugin )
+void PluginController::loadPlugin( std::string const &plugin )
 {
 
 }
 
-void Controller::closePlugins()
+void PluginController::closePlugins()
 {
 	for( auto &plugin : plugins )
 	{
@@ -43,12 +43,12 @@ void Controller::closePlugins()
 	}
 }
 
-void Controller::closePlugin( std::string const &plugin )
+void PluginController::closePlugin( std::string const &plugin )
 {
 
 }
 
-void Controller::scanFolder()
+void PluginController::scanFolder()
 {
 	for( auto &file : std::filesystem::recursive_directory_iterator( folder ) )
 	{

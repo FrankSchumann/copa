@@ -9,11 +9,11 @@
 namespace plugin
 {
 
-class Controller
+class PluginController
 {
 public:
-	Controller( std::string const &_folder);
-	virtual ~Controller();
+	PluginController( std::string const &_folder);
+	virtual ~PluginController();
 
 	void loadPlugins();
 	void loadPlugin( std::string const &plugin );
