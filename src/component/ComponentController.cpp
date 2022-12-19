@@ -4,8 +4,7 @@
 
 namespace COPA
 {
-std::map< std::string, std::shared_ptr< ComponentIf > > ComponentController::components;
-std::map< std::string, std::map< std::string, std::shared_ptr< ComponentIf > > > ComponentController::components2;
+std::map< std::string, std::map< std::string, std::shared_ptr< ComponentIf > > > ComponentController::components;
 
 ComponentController::ComponentController() : ComponentController( std::make_shared< FactoryController >() )
 {
@@ -25,10 +24,8 @@ void ComponentController::create( std::string const &type, std::string const &na
 
     std::shared_ptr< ComponentIf > component = factory->create( name );
 
-    components[ name ] = component;
-
-    components2.insert( std::make_pair( type, std::map< std::string, std::shared_ptr< ComponentIf > >() ) );
-    components2[ type ].insert( std::make_pair( name, component ) );
+    components.insert( std::make_pair( type, std::map< std::string, std::shared_ptr< ComponentIf > >() ) );
+    components[ type ].insert( std::make_pair( name, component ) );
 }
 
 std::shared_ptr< ComponentIf > ComponentController::get( std::string const &type, std::string const &name )
@@ -49,8 +46,8 @@ std::map< std::string, std::shared_ptr< ComponentIf > > ComponentController::get
 {
     std::map< std::string, std::shared_ptr< ComponentIf > > result;
 
-    auto it = components2.find( type );
-    if ( it != components2.end() )
+    auto it = components.find( type );
+    if ( it != components.end() )
     {
         result = it->second;
     }
