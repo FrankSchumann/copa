@@ -48,7 +48,7 @@ std::map< std::string, std::shared_ptr< ComponentIf > > ComponentController::get
 {
     std::map< std::string, std::shared_ptr< ComponentIf > > result;
 
-    auto it = components.find( type );
+    auto const it = components.find( type );
     if ( it != components.end() )
     {
         result = it->second;
