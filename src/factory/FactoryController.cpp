@@ -23,7 +23,7 @@ void FactoryController::subscribe( std::shared_ptr< FactoryIf > const factory )
     factories[ type ] = factory;
 }
 
-std::shared_ptr< FactoryIf > FactoryController::get( std::string const &type )
+std::shared_ptr< FactoryIf > FactoryController::get( std::string const &type ) const
 {
     std::shared_ptr< FactoryIf > result( nullptr );
 
@@ -36,7 +36,7 @@ std::shared_ptr< FactoryIf > FactoryController::get( std::string const &type )
     return result;
 }
 
-void FactoryController::list()
+void FactoryController::list() const
 {
     std::cout << "FactoryController::list " << std::endl;
 
