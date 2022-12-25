@@ -14,11 +14,6 @@ FactoryController::~FactoryController()
 {
 }
 
-void FactoryController::doSomething()
-{
-    std::cout << "FactoryController::doSomething" << std::endl;
-}
-
 void FactoryController::subscribe( std::shared_ptr< FactoryIf > const factory )
 {
     std::cout << "FactoryController::subscribe " << factory->getType() << std::endl;
