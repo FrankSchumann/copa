@@ -30,7 +30,7 @@ void ComponentController::create( std::string const &type, std::string const &na
     components[ type ].insert( std::make_pair( name, component ) );
 }
 
-std::shared_ptr< ComponentIf > ComponentController::get( std::string const &type, std::string const &name )
+std::shared_ptr< ComponentIf > ComponentController::get( std::string const &type, std::string const &name ) const
 {
     std::shared_ptr< ComponentIf > result( nullptr );
 
@@ -44,7 +44,7 @@ std::shared_ptr< ComponentIf > ComponentController::get( std::string const &type
     return result;
 }
 
-std::map< std::string, std::shared_ptr< ComponentIf > > ComponentController::getComponentsSameType( std::string const &type )
+std::map< std::string, std::shared_ptr< ComponentIf > > ComponentController::getComponentsSameType( std::string const &type ) const
 {
     std::map< std::string, std::shared_ptr< ComponentIf > > result;
 
@@ -58,7 +58,7 @@ std::map< std::string, std::shared_ptr< ComponentIf > > ComponentController::get
 }
 
 std::shared_ptr< ComponentIf > ComponentController::getComponent( std::string const &name,
-                                                                  std::map< std::string, std::shared_ptr< ComponentIf > > const &componentsSameType )
+                                                                  std::map< std::string, std::shared_ptr< ComponentIf > > const &componentsSameType ) const
 {
     std::shared_ptr< ComponentIf > result;
 
@@ -71,7 +71,7 @@ std::shared_ptr< ComponentIf > ComponentController::getComponent( std::string co
     return result;
 }
 
-void ComponentController::list()
+void ComponentController::list() const
 {
     std::cout << "ComponentController::list" << std::endl;
 

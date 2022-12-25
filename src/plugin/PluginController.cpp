@@ -27,11 +27,11 @@ void PluginController::loadPlugins()
     }
 }
 
-void PluginController::loadPlugin( std::string const &plugin )
+void PluginController::loadPlugin( std::string const &plugin ) const
 {
 }
 
-void PluginController::closePlugins()
+void PluginController::closePlugins() const
 {
     for ( auto &plugin : plugins )
     {
@@ -39,7 +39,7 @@ void PluginController::closePlugins()
     }
 }
 
-void PluginController::closePlugin( std::string const &plugin )
+void PluginController::closePlugin( std::string const &plugin ) const
 {
 }
 
@@ -55,7 +55,7 @@ void PluginController::scanFolder()
     }
 }
 
-void PluginController::list()
+void PluginController::list() const
 {
     std::cout << "PluginController::list " << std::endl;
 
