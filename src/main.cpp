@@ -21,9 +21,9 @@ int main( int argc, char *argv[] )
     std::cout << "Version: " << osalInfo->getVersion() << std::endl;
     std::cout << std::endl;
 
-    std::string const pluginsFolder( "plugins" );
+    std::string const pluginFolder( "plugin" );
 
-    COPA::PluginController pluginController( pluginsFolder );
+    COPA::PluginController pluginController( pluginFolder );
 
     pluginController.loadPlugins();
 
