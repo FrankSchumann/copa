@@ -15,7 +15,7 @@ set ( PROJECT_LINK_LIBS libOsal.so )
 link_directories( ./lib )
 
 add_executable(copa ${SOURCES})
-target_link_libraries(copa ${PROJECT_LINK_LIBS} )
+target_link_libraries(copa ${PROJECT_LINK_LIBS} -ldl)
 
 # Create a simple configuration header
 configure_file(config.h.in config.h)
@@ -24,8 +24,5 @@ configure_file(config.h.in config.h)
 target_include_directories(copa PUBLIC "${PROJECT_BINARY_DIR}" include)
 
 set_target_properties( copa PROPERTIES ENABLE_EXPORTS 1 )
-
-# Include libraries
-target_link_libraries(copa -ldl)
 
 message("CMAKE_PROJECT_VERSION = ${CMAKE_PROJECT_VERSION}")
