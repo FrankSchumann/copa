@@ -4,12 +4,21 @@
 #include "config.h"
 #include "copa-pdk/component/ComponentController.h"
 #include "copa-pdk/factory/FactoryController.h"
+#include "copa-pdk/osal/osalinfo/OsalInfoFactory.h"
 #include "plugin/PluginController.h"
 #include "runtime-sdk/RuntimeAdapterIf.h"
+
 int main( int argc, char *argv[] )
 {
     std::cout << "COPA - " << APPLICATION_DESCRIPTION << std::endl;
     std::cout << "Version: " << APPLICATION_VERSION << std::endl;
+    std::cout << std::endl;
+
+    std::shared_ptr< COPA::OsalInfoFactoryIf > osalInfoFactory = std::make_shared< COPA::OsalInfoFactory >();
+    std::shared_ptr< COPA::OsalInfoIf > osalInfo = osalInfoFactory->create();
+
+    std::cout << "OSAL - " << osalInfo->getDescription() << std::endl;
+    std::cout << "Version: " << osalInfo->getVersion() << std::endl;
     std::cout << std::endl;
 
     std::string const pluginsFolder( "plugins" );

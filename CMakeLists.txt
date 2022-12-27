@@ -10,7 +10,12 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
 
 file(GLOB SOURCES "src/*.cpp" "src/*/*.cpp")
 
+#Shared libraries
+set ( PROJECT_LINK_LIBS libOsal.so )
+link_directories( ./lib )
+
 add_executable(copa ${SOURCES})
+target_link_libraries(copa ${PROJECT_LINK_LIBS} )
 
 # Create a simple configuration header
 configure_file(config.h.in config.h)
