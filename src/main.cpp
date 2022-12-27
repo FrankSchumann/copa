@@ -39,7 +39,7 @@ int main( int argc, char *argv[] )
     componentController.create( "RuntimeAdapter", "Donald Duck" );
 
     componentController.create( "CodesysAdapter", "Goofy" );
-    componentController.create( "CodesysAdapter", "Pluto" );
+    componentController.create( "EcoStruxureAdapter", "Pluto" );
 
     componentController.list();
     std::cout << std::endl;

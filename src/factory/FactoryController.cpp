@@ -44,6 +44,8 @@ void FactoryController::list() const
     {
         std::cout << "Factory first: " << factory.first << " second " << factory.second->getType() << std::endl;
     }
+
+    std::cout << std::endl;
 }
 
 }
