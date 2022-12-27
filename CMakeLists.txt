@@ -8,14 +8,16 @@ project(COPA
 set(CMAKE_BUILD_TYPE Debug)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
 
+set(APPLICATION_NAME copa)
+
 file(GLOB SOURCES "src/*.cpp" "src/*/*.cpp")
 
 #Shared libraries
 set ( PROJECT_LINK_LIBS libOsal.so )
 link_directories( ./lib )
 
-add_executable(copa ${SOURCES})
-target_link_libraries(copa ${PROJECT_LINK_LIBS} -ldl)
+add_executable(${APPLICATION_NAME} ${SOURCES})
+target_link_libraries(${APPLICATION_NAME} ${PROJECT_LINK_LIBS} -ldl)
 
 # Create a simple configuration header
 configure_file(config.h.in config.h)
