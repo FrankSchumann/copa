@@ -2,16 +2,13 @@ cmake_minimum_required(VERSION 3.12)
 
 # Set some basic project attributes
 project(COPA 
-		VERSION 0.0.0.2
+		VERSION 0.0.0.3
 		DESCRIPTION "Controller Platform")
 
 set(CMAKE_BUILD_TYPE Debug)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
 
-#Manually add sources using the set command as follows:
-#set( SOURCES "src/*.cpp" "src/plugin/Plugin.cpp" )
-
-file(GLOB SOURCES "src/*.cpp" "src/plugin/*.cpp" "src/component/*.cpp" "src/factory/*.cpp")
+file(GLOB SOURCES "src/*.cpp" "src/*/*.cpp")
 
 add_executable(copa ${SOURCES})
 
