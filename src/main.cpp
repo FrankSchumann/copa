@@ -35,7 +35,7 @@ int main( int argc, char *argv[] )
 
     COPA::ComponentController componentController;
 
-    componentController.create( "RuntimeAdapter", "Mickey Mouse" );
+    componentController.create( "RuntimeController", "Mickey Mouse" );
     componentController.create( "RuntimeAdapter", "Donald Duck" );
 
     componentController.create( "CodesysAdapter", "Goofy" );
@@ -44,14 +44,14 @@ int main( int argc, char *argv[] )
     componentController.list();
     std::cout << std::endl;
 
-    std::shared_ptr< COPA::ComponentIf > cmpMickeyMouse = componentController.get( "RuntimeAdapter", "Mickey Mouse" );
+    std::shared_ptr< COPA::ComponentIf > cmpDonaldDuck = componentController.get( "RuntimeAdapter", "Donald Duck" );
 
-    std::cout << "cmpMickeyMouse getName: " << cmpMickeyMouse->getName() << std::endl;
+    std::cout << "cmpDonaldDuck getName: " << cmpDonaldDuck->getName() << std::endl;
 
-    std::shared_ptr< RuntimeAdapterIf > runtimeAdpaterMickeyMouse = std::reinterpret_pointer_cast< RuntimeAdapterIf >( cmpMickeyMouse );
+    std::shared_ptr< RuntimeAdapterIf > runtimeAdpaterDonaldDuck = std::reinterpret_pointer_cast< RuntimeAdapterIf >( cmpDonaldDuck );
 
     std::cout << "startApplicatons" << std::endl;
-    runtimeAdpaterMickeyMouse->startApplications();
+    runtimeAdpaterDonaldDuck->startApplications();
 
     return 0;
 }
