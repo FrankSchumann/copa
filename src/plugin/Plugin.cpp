@@ -8,10 +8,6 @@ Plugin::Plugin( std::filesystem::path const& _file ) : file( _file )
 {
 }
 
-Plugin::~Plugin()
-{
-}
-
 void Plugin::load()
 {
     std::cout << "load plugin from file " << file.string() << std::endl;
@@ -47,6 +43,16 @@ void Plugin::show()
     std::cout << "Plugin: " << name << " File: " << file.string() << " Version: " << version << std::endl;
 }
 
+void Plugin::receiveVersion()
+{
+    receiveString( std::string( "getVersion" ), version );
+}
+
+void Plugin::receiveName()
+{
+    receiveString( std::string( "getName" ), version );
+}
+
 void Plugin::subscribe()
 {
     typedef void ( *subscribeFunctionType )();
@@ -58,16 +64,6 @@ void Plugin::subscribe()
 
         subscribeFunction();
     }
-}
-
-void Plugin::receiveName()
-{
-    receiveString( std::string( "getName" ), version );
-}
-
-void Plugin::receiveVersion()
-{
-    receiveString( std::string( "getVersion" ), version );
 }
 
 void Plugin::receiveString( std::string const& functionName, std::string& destination )

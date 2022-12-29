@@ -16,10 +16,6 @@ ComponentController::ComponentController( std::shared_ptr< FactoryControllerIf >
 {
 }
 
-ComponentController::~ComponentController()
-{
-}
-
 void ComponentController::create( std::string const &type, std::string const &name )
 {
     std::shared_ptr< FactoryIf > factory = factoryController->get( type );

@@ -7,7 +7,6 @@ class Plugin
 {
    public:
     Plugin( std::filesystem::path const &_file );
-    virtual ~Plugin();
 
     void load();
     void close();
@@ -20,9 +19,9 @@ class Plugin
     std::string name = std::string( "" );
     std::string version = std::string( "" );
 
-    void subscribe();
     void receiveName();
     void receiveVersion();
+    void subscribe();
 
     void receiveString(std::string const &functionName, std::string &destination);
 };
