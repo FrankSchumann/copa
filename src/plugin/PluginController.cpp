@@ -11,10 +11,6 @@ PluginController::PluginController( std::string const &_folder ) : folder( _fold
 {
 }
 
-PluginController::~PluginController()
-{
-}
-
 void PluginController::loadPlugins()
 {
     std::cout << "loadPlugins from folder " << folder << std::endl;

@@ -10,10 +10,6 @@ FactoryController::FactoryController()
 {
 }
 
-FactoryController::~FactoryController()
-{
-}
-
 void FactoryController::subscribe( std::shared_ptr< FactoryIf > const factory )
 {
     std::cout << "FactoryController::subscribe " << factory->getType() << std::endl;

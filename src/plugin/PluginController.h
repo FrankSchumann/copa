@@ -12,7 +12,6 @@ class PluginController
 {
    public:
     PluginController( std::string const &_folder );
-    virtual ~PluginController();
 
     void loadPlugins();
     void loadPlugin( std::string const &plugin ) const;
