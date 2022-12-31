@@ -39,7 +39,9 @@ int main( int argc, char *argv[] )
     componentController.create( "RuntimeAdapter", "Donald Duck" );
 
     componentController.create( "CodesysAdapter", "Goofy" );
+    componentController.create( "CodesysAdapter", "Daisy" );
     componentController.create( "EcoStruxureAdapter", "Pluto" );
+    componentController.create( "EcoStruxureAdapter", "Ellroy" );
 
     componentController.list();
     std::cout << std::endl;
@@ -52,6 +54,22 @@ int main( int argc, char *argv[] )
 
     std::cout << "startApplicatons" << std::endl;
     runtimeAdpaterDonaldDuck->startApplications();
+    std::cout << std::endl;
+
+    std::cout << "erase Component" << std::endl;
+    componentController.erase( "EcoStruxureAdapter", "Pluto" );
+
+    std::cout << "erase Components" << std::endl;
+    componentController.erase( "CodesysAdapter");
+
+    std::cout << "finish erase" << std::endl << std::endl;
+
+    componentController.list();
+    std::cout << std::endl;
+
+
+
+
 
     return 0;
 }

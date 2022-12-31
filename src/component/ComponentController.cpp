@@ -1,6 +1,9 @@
 #include "copa-pdk/component/ComponentController.h"
 
+#include <algorithm>
 #include <iostream>
+#include <stdexcept>
+#include <utility>
 
 #include "copa-pdk/factory/FactoryController.h"
 
@@ -30,24 +33,57 @@ std::shared_ptr< ComponentIf > ComponentController::get( std::string const &type
 {
     std::shared_ptr< ComponentIf > result( nullptr );
 
-    auto const componentsSameType = getComponentsSameType( type );
-
-    if ( false == componentsSameType.empty() )
+    try
     {
-        result = getComponent( name, componentsSameType );
+        result = components.at( type ).at( name );
+    }
+    catch ( const std::out_of_range &oor )
+    {
+        std::cerr << "Out of Range error: " << oor.what() << '\n';
     }
 
     return result;
+}
+
+void ComponentController::erase( std::string const &type, std::string const &name )
+{
+    try
+    {
+        components.at( type ).at( name ).reset();
+        components.at( type ).erase( name );
+
+        if ( true == components.at( type ).empty() )
+        {
+            components.erase( type );
+        }
+    }
+    catch ( const std::out_of_range &oor )
+    {
+        std::cerr << "Out of Range error: " << oor.what() << '\n';
+    }
+}
+
+void ComponentController::erase( std::string const &type )
+{
+    auto first = components.at( type ).begin();
+    auto last = components.at( type ).end();
+
+    auto destroy = []( auto &componentPair ) { componentPair.second.reset(); };
+
+    std::for_each( first, last, destroy );
+
+    components.erase( type );
+
 }
 
 std::map< std::string, std::shared_ptr< ComponentIf > > ComponentController::getComponentsSameType( std::string const &type ) const
 {
     std::map< std::string, std::shared_ptr< ComponentIf > > result;
 
-    auto const it = components.find( type );
-    if ( it != components.end() )
+    auto const componentsIterator = components.find( type );
+    if ( componentsIterator != components.end() )
     {
-        result = it->second;
+        result = componentsIterator->second;
     }
 
     return result;
@@ -71,15 +107,14 @@ void ComponentController::list() const
 {
     std::cout << "ComponentController::list" << std::endl;
 
-    for ( auto const &[ type, componetsSameType ] : components )
+    for ( auto const &[ type, componentsSameType ] : components )
     {
         std::cout << std::endl << "Type: " << type << std::endl;
 
-        for ( auto const &[ name, componet ] : componetsSameType )
+        for ( auto const &[ name, component ] : componentsSameType )
         {
             std::cout << "Name: " << name << std::endl;
         }
     }
 }
-
 }
