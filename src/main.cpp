@@ -67,7 +67,7 @@ int main( int argc, char *argv[] )
     componentController.list();
     std::cout << std::endl;
 
-    std::cout << "unsubscribe Factory" << std::endl;
+    std::cout << "before unsubscribe Factory" << std::endl;
 
     factoryController->list();
 
