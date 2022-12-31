@@ -1,6 +1,6 @@
 #pragma once
 
-#include <memory>
+#include <map>
 #include <string>
 #include <vector>
 
@@ -22,11 +22,9 @@ class PluginController
     void list() const;
 
    private:
-    static std::vector< std::shared_ptr< Plugin > > plugins;
+    static std::map< std::string, std::shared_ptr< Plugin > > plugins;
 
     std::string folder;
-
-    void scanFolder();
 };
 
 }

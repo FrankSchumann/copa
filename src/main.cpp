@@ -76,5 +76,10 @@ int main( int argc, char *argv[] )
 
     factoryController->list();
 
+    std::cout << "shutdown" << std::endl;
+
+    pluginController.closePlugins();
+
+
     return 0;
 }

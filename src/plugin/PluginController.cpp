@@ -5,7 +5,7 @@
 
 namespace COPA
 {
-std::vector< std::shared_ptr< Plugin > > PluginController::plugins;
+std::map< std::string, std::shared_ptr< Plugin > > PluginController::plugins;
 
 PluginController::PluginController( std::string const &_folder ) : folder( _folder )
 {
@@ -15,11 +15,17 @@ void PluginController::loadPlugins()
 {
     std::cout << "loadPlugins from folder " << folder << std::endl;
 
-    scanFolder();
-
-    for ( auto &plugin : plugins )
+    for ( auto &file : std::filesystem::recursive_directory_iterator( folder ) )
     {
+        std::cout << file.path().string() << std::endl;
+
+        std::shared_ptr< Plugin > plugin = std::make_shared< Plugin >( file.path() );
+
         plugin->load();
+
+        std::string const name = plugin->getName();
+
+        plugins[ name ] = plugin;
     }
 
     std::cout << std::endl;
@@ -31,7 +37,9 @@ void PluginController::loadPlugin( std::string const &plugin ) const
 
 void PluginController::closePlugins() const
 {
-    for ( auto &plugin : plugins )
+    std::cout << "PluginController::closePlugins" << std::endl;
+
+    for ( auto const &[ name, plugin ] : plugins )
     {
         plugin->close();
     }
@@ -39,27 +47,22 @@ void PluginController::closePlugins() const
 
 void PluginController::closePlugin( std::string const &plugin ) const
 {
-}
-
-void PluginController::scanFolder()
-{
-    for ( auto &file : std::filesystem::recursive_directory_iterator( folder ) )
+    try
     {
-        std::cout << file.path().string() << std::endl;
-
-        std::shared_ptr< Plugin > plugin = std::make_shared< Plugin >( file.path() );
-
-        plugins.push_back( plugin );
+        plugins.at( plugin )->close();
     }
 
-    std::cout << std::endl;
+    catch ( const std::out_of_range &oor )
+    {
+        std::cerr << "Out of Range error: " << oor.what() << '\n';
+    }
 }
 
 void PluginController::list() const
 {
     std::cout << "PluginController::list " << std::endl;
 
-    for ( auto const plugin : plugins )
+    for ( auto const &[ name, plugin ] : plugins )
     {
         plugin->show();
     }

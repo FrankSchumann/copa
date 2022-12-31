@@ -9,9 +9,10 @@ class Plugin
     Plugin( std::filesystem::path const &_file );
 
     void load();
-    void close();
+    void close() const;
+    std::string getName() const;
 
-    void show();
+    void show() const;
 
    private:
     std::filesystem::path file;
@@ -21,7 +22,8 @@ class Plugin
 
     void receiveName();
     void receiveVersion();
-    void subscribe();
+    void receiveString(std::string const &functionName, std::string &destination) const;
 
-    void receiveString(std::string const &functionName, std::string &destination);
+    void subscribe() const;
+    void unsubscribe() const;
 };

@@ -33,12 +33,19 @@ void Plugin::load()
     }
 }
 
-void Plugin::close()
+void Plugin::close() const
 {
     std::cout << "close plugin from file " << file.string() << std::endl;
+
+    unsubscribe();
 }
 
-void Plugin::show()
+std::string Plugin::getName() const
+{
+    return name;
+}
+
+void Plugin::show() const
 {
     std::cout << "Plugin: " << name << " File: " << file.string() << " Version: " << version << std::endl;
 }
@@ -50,10 +57,24 @@ void Plugin::receiveVersion()
 
 void Plugin::receiveName()
 {
-    receiveString( std::string( "getName" ), version );
+    receiveString( std::string( "getName" ), name );
 }
 
-void Plugin::subscribe()
+void Plugin::receiveString( std::string const& functionName, std::string& destination ) const
+{
+    typedef const char* ( *getStringFunctionType )();
+    void* getStringFunctionSymbol = dlsym( handle, functionName.c_str() );
+
+    if ( nullptr != getStringFunctionSymbol )
+    {
+        getStringFunctionType getStringFunction = ( getStringFunctionType )getStringFunctionSymbol;
+
+        const char* stringTmp = getStringFunction();
+        destination.assign( stringTmp );
+    }
+}
+
+void Plugin::subscribe() const
 {
     typedef void ( *subscribeFunctionType )();
     void* subscribeFunctionSymbol = dlsym( handle, "subscribePlugin" );
@@ -66,16 +87,15 @@ void Plugin::subscribe()
     }
 }
 
-void Plugin::receiveString( std::string const& functionName, std::string& destination )
+void Plugin::unsubscribe() const
 {
-    typedef const char* ( *getStringFunctionType )();
-    void* getStringFunctionSymbol = dlsym( handle, functionName.c_str() );
+    typedef void ( *unsubscribeFunctionType )();
+    void* unsubscribeFunctionSymbol = dlsym( handle, "unsubscribePlugin" );
 
-    if ( nullptr != getStringFunctionSymbol )
+    if ( nullptr != unsubscribeFunctionSymbol )
     {
-        getStringFunctionType getStringFunction = ( getStringFunctionType )getStringFunctionSymbol;
+    	unsubscribeFunctionType unsubscribeFunction = ( unsubscribeFunctionType )unsubscribeFunctionSymbol;
 
-        const char* stringTmp = getStringFunction();
-        destination.assign( stringTmp );
+    	unsubscribeFunction();
     }
 }
