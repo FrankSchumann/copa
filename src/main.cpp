@@ -60,16 +60,21 @@ int main( int argc, char *argv[] )
     componentController.erase( "EcoStruxureAdapter", "Pluto" );
 
     std::cout << "erase Components" << std::endl;
-    componentController.erase( "CodesysAdapter");
+    componentController.erase( "CodesysAdapter" );
 
     std::cout << "finish erase" << std::endl << std::endl;
 
     componentController.list();
     std::cout << std::endl;
 
+    std::cout << "unsubscribe Factory" << std::endl;
 
+    factoryController->list();
 
+    std::cout << "unsubscribe RuntimeAdapter" << std::endl;
+    factoryController->unsubscribe( "RuntimeAdapter" );
 
+    factoryController->list();
 
     return 0;
 }

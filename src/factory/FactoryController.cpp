@@ -19,6 +19,11 @@ void FactoryController::subscribe( std::shared_ptr< FactoryIf > const factory )
     factories[ type ] = factory;
 }
 
+void FactoryController::unsubscribe( std::string const &type )
+{
+	factories.erase(type);
+}
+
 std::shared_ptr< FactoryIf > FactoryController::get( std::string const &type ) const
 {
     std::shared_ptr< FactoryIf > result( nullptr );
