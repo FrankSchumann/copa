@@ -41,6 +41,7 @@ int main( int argc, char *argv[] )
     componentController.create( "CodesysAdapter", "Goofy" );
     componentController.create( "CodesysAdapter", "Daisy" );
     componentController.create( "EcoStruxureAdapter", "Pluto" );
+    componentController.create( "EcoStruxureAdapter", "Ellroy" );
 
     componentController.list();
     std::cout << std::endl;

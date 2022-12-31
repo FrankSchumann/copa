@@ -21,6 +21,8 @@ void PluginController::loadPlugins()
     {
         plugin->load();
     }
+
+    std::cout << std::endl;
 }
 
 void PluginController::loadPlugin( std::string const &plugin ) const
@@ -49,6 +51,8 @@ void PluginController::scanFolder()
 
         plugins.push_back( plugin );
     }
+
+    std::cout << std::endl;
 }
 
 void PluginController::list() const
