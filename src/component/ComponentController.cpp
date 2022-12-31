@@ -73,34 +73,6 @@ void ComponentController::erase( std::string const &type )
     std::for_each( first, last, destroy );
 
     components.erase( type );
-
-}
-
-std::map< std::string, std::shared_ptr< ComponentIf > > ComponentController::getComponentsSameType( std::string const &type ) const
-{
-    std::map< std::string, std::shared_ptr< ComponentIf > > result;
-
-    auto const componentsIterator = components.find( type );
-    if ( componentsIterator != components.end() )
-    {
-        result = componentsIterator->second;
-    }
-
-    return result;
-}
-
-std::shared_ptr< ComponentIf > ComponentController::getComponent( std::string const &name,
-                                                                  std::map< std::string, std::shared_ptr< ComponentIf > > const &componentsSameType ) const
-{
-    std::shared_ptr< ComponentIf > result;
-
-    auto it = componentsSameType.find( name );
-    if ( it != componentsSameType.end() )
-    {
-        result = it->second;
-    }
-
-    return result;
 }
 
 void ComponentController::list() const
