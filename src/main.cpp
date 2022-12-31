@@ -63,7 +63,6 @@ int main( int argc, char *argv[] )
     componentController.list();
     std::cout << std::endl;
 
-
     std::cout << "before shutdown" << std::endl;
     factoryController->list();
 
