@@ -59,27 +59,26 @@ int main( int argc, char *argv[] )
     std::cout << "erase Component" << std::endl;
     componentController.erase( "EcoStruxureAdapter", "Pluto" );
 
-    std::cout << "erase Components" << std::endl;
-    componentController.erase( "CodesysAdapter" );
+    std::cout << "components after erase" << std::endl << std::endl;
+    componentController.list();
+    std::cout << std::endl;
 
-    std::cout << "finish erase" << std::endl << std::endl;
+
+    std::cout << "before shutdown" << std::endl;
+    factoryController->list();
 
     componentController.list();
     std::cout << std::endl;
 
-    std::cout << "before unsubscribe Factory" << std::endl;
-
-    factoryController->list();
-
-    std::cout << "unsubscribe RuntimeAdapter" << std::endl;
-    factoryController->unsubscribe( "RuntimeAdapter" );
-
-    factoryController->list();
-
     std::cout << "shutdown" << std::endl;
 
     pluginController.closePlugins();
+    std::cout << std::endl;
 
+    std::cout << "after shutdown" << std::endl;
+    factoryController->list();
+
+    componentController.list();
 
     return 0;
 }
