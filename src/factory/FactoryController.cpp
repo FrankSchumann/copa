@@ -23,10 +23,13 @@ std::shared_ptr< FactoryIf > FactoryController::get( std::string const &type ) c
 {
     std::shared_ptr< FactoryIf > result( nullptr );
 
-    auto it = factories.find( type );
-    if ( it != factories.end() )
+    try
     {
-        result = it->second;
+        result = factories.at( type );
+    }
+    catch ( const std::out_of_range &oor )
+    {
+        std::cerr << "Out of Range error: " << oor.what() << '\n';
     }
 
     return result;
