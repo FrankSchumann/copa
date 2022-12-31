@@ -22,8 +22,9 @@ class Plugin
 
     void receiveName();
     void receiveVersion();
-    void receiveString(std::string const &functionName, std::string &destination) const;
+    void receiveString( std::string const &functionName, std::string &destination ) const;
 
     void subscribe() const;
     void unsubscribe() const;
+    void callPluginFunction( std::string const &function ) const;
 };

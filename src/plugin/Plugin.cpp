@@ -76,26 +76,23 @@ void Plugin::receiveString( std::string const& functionName, std::string& destin
 
 void Plugin::subscribe() const
 {
-    typedef void ( *subscribeFunctionType )();
-    void* subscribeFunctionSymbol = dlsym( handle, "subscribePlugin" );
-
-    if ( nullptr != subscribeFunctionSymbol )
-    {
-        subscribeFunctionType subscribeFunction = ( subscribeFunctionType )subscribeFunctionSymbol;
-
-        subscribeFunction();
-    }
+	callPluginFunction( "subscribePlugin" );
 }
 
 void Plugin::unsubscribe() const
 {
-    typedef void ( *unsubscribeFunctionType )();
-    void* unsubscribeFunctionSymbol = dlsym( handle, "unsubscribePlugin" );
+	callPluginFunction( "unsubscribePlugin" );
+}
 
-    if ( nullptr != unsubscribeFunctionSymbol )
+void Plugin::callPluginFunction( std::string const& function ) const
+{
+    typedef void ( *functionType )();
+    void* functionSymbol = dlsym( handle, function.c_str() );
+
+    if ( nullptr != functionSymbol )
     {
-    	unsubscribeFunctionType unsubscribeFunction = ( unsubscribeFunctionType )unsubscribeFunctionSymbol;
+        functionType function = ( functionType )functionSymbol;
 
-    	unsubscribeFunction();
+        function();
     }
 }
