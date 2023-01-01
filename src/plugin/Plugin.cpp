@@ -38,6 +38,8 @@ void Plugin::close() const
     std::cout << "close plugin from file " << file.string() << std::endl;
 
     unsubscribe();
+
+    dlclose( handle );
 }
 
 std::string Plugin::getName() const
@@ -76,12 +78,12 @@ void Plugin::receiveString( std::string const& functionName, std::string& destin
 
 void Plugin::subscribe() const
 {
-	callPluginFunction( "subscribePlugin" );
+    callPluginFunction( "subscribePlugin" );
 }
 
 void Plugin::unsubscribe() const
 {
-	callPluginFunction( "unsubscribePlugin" );
+    callPluginFunction( "unsubscribePlugin" );
 }
 
 void Plugin::callPluginFunction( std::string const& function ) const

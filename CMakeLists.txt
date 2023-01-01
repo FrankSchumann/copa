@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.12)
 
 # Set some basic project attributes
 project(COPA 
-		VERSION 0.0.0.3
+		VERSION 0.0.0.4
 		DESCRIPTION "Controller Platform")
 
 set(CMAKE_BUILD_TYPE Debug)
