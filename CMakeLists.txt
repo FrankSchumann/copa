@@ -28,3 +28,13 @@ target_include_directories(copa PUBLIC "${PROJECT_BINARY_DIR}" include)
 set_target_properties( copa PROPERTIES ENABLE_EXPORTS 1 )
 
 message("CMAKE_PROJECT_VERSION = ${CMAKE_PROJECT_VERSION}")
+
+IF(EXISTS "${WIND_CC_SYSROOT}/secureLoader/privatekey.pem")
+	IF(EXISTS "${WIND_CC_SYSROOT}/secureLoader/publiccert.pem")
+		add_custom_command(TARGET ${MY_TARGET} POST_BUILD
+			COMMAND echo "start singtool command ..."
+			COMMAND signtool --strip=all --key=${WIND_CC_SYSROOT}/secureLoader/privatekey.pem --cert=${WIND_CC_SYSROOT}/secureLoader/publiccert.pem --type=ELF ${MY_TARGET}
+			COMMENT  "end singtool command ..."
+		)
+	ENDIF()
+ENDIF()
