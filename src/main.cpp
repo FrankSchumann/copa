@@ -6,7 +6,7 @@
 #include "copa-pdk/factory/FactoryController.h"
 #include "copa-pdk/osal/osalinfo/OsalInfoFactory.h"
 #include "plugin/PluginController.h"
-#include "runtime-sdk/RuntimeAdapterIf.h"
+#include "runtime/RuntimeAdapterIf.h"
 
 int main( int argc, char *argv[] )
 {
