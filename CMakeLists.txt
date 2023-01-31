@@ -14,7 +14,7 @@ find_package(osal REQUIRED)
 find_package(runtime REQUIRED)
 
 #Shared libraries
-set ( PROJECT_LINK_LIBS libOsal.so )
+set ( PROJECT_LINK_LIBS libosal.so )
 link_directories( ./lib )
 
 add_executable(${PROJECT_NAME} ${SOURCES})
