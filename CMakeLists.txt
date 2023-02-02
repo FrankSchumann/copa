@@ -10,15 +10,24 @@ set(CMAKE_CXX_STANDARD 17)
 
 file(GLOB SOURCES "src/*.cpp" "src/*/*.cpp")
 
-find_package(osal REQUIRED)
-find_package(runtime REQUIRED)
+find_package(osal CONFIG REQUIRED)
+find_package(runtime CONFIG REQUIRED)
 
 #Shared libraries
 set ( PROJECT_LINK_LIBS libosal.so )
 link_directories( ./lib )
+#link_directories( ${osal_LIBRARIES} )
+
+message("osal_LIBRARIES = ${osal_LIBRARIES}")
+message("osal_INCLUDE_DIR = ${osal_INCLUDE_DIR}")
+message("osal_DEFINITIONS = ${osal_DEFINITIONS}")
+
+
 
 add_executable(${PROJECT_NAME} ${SOURCES})
 target_link_libraries(${PROJECT_NAME} ${PROJECT_LINK_LIBS} -ldl)
+#target_link_libraries(${PROJECT_NAME} ${osal_LIBRARIES} )
+#target_link_libraries(${PROJECT_NAME} osal::osal -ldl)
 
 # Create a simple configuration header
 configure_file(config.h.in config.h)

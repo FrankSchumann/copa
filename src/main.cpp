@@ -2,8 +2,8 @@
 #include <memory>
 
 #include "config.h"
-#include "copa-pdk/component/ComponentController.h"
-#include "copa-pdk/factory/FactoryController.h"
+#include "copa/component/ComponentController.h"
+#include "copa/factory/FactoryController.h"
 #include "osal/Info.h"
 #include "plugin/PluginController.h"
 #include "runtime/RuntimeAdapterIf.h"
