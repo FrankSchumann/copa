@@ -1,4 +1,4 @@
-#include "copa/factory/FactoryController.h"
+#include "factory/FactoryController.h"
 
 #include <iostream>
 

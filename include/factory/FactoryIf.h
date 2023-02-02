@@ -4,7 +4,7 @@
 #include <memory>
 #include <vector>
 
-#include "copa/component/ComponentIf.h"
+#include "component/ComponentIf.h"
 
 namespace COPA
 {

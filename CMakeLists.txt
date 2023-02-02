@@ -11,7 +11,7 @@ set(CMAKE_CXX_STANDARD 17)
 file(GLOB SOURCES "src/*.cpp" "src/*/*.cpp")
 
 find_package(osal CONFIG REQUIRED)
-find_package(runtime CONFIG REQUIRED)
+#find_package(runtime CONFIG REQUIRED)
 
 #Shared libraries
 set ( PROJECT_LINK_LIBS libosal.so )
@@ -33,7 +33,7 @@ target_link_libraries(${PROJECT_NAME} ${PROJECT_LINK_LIBS} -ldl)
 configure_file(config.h.in config.h)
 
 # Include the configuration header in the build
-target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_BINARY_DIR} include ${osal_INCLUDE_DIR} ${runtime_INCLUDE_DIR})
+target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_BINARY_DIR} include ${osal_INCLUDE_DIR} )
 
 set_target_properties( ${PROJECT_NAME} PROPERTIES ENABLE_EXPORTS 1 )
 

@@ -2,11 +2,18 @@
 #include <memory>
 
 #include "config.h"
-#include "copa/component/ComponentController.h"
-#include "copa/factory/FactoryController.h"
+#include "component/ComponentController.h"
+#include "factory/FactoryController.h"
 #include "osal/Info.h"
 #include "plugin/PluginController.h"
-#include "runtime/RuntimeAdapterIf.h"
+
+class RuntimeAdapterIf : public COPA::ComponentIf
+{
+   public:
+    virtual void startApplications() const = 0;
+    virtual void stopApplications() const = 0;
+};
+
 
 int main( int argc, char *argv[] )
 {

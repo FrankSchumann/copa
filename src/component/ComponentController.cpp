@@ -1,11 +1,11 @@
-#include "copa/component/ComponentController.h"
+#include "component/ComponentController.h"
 
 #include <algorithm>
 #include <iostream>
 #include <stdexcept>
 #include <utility>
 
-#include "copa/factory/FactoryController.h"
+#include "factory/FactoryController.h"
 
 namespace COPA
 {

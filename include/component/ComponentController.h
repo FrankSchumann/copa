@@ -5,7 +5,7 @@
 
 #include "ComponentControllerIf.h"
 #include "ComponentIf.h"
-#include "copa/factory/FactoryControllerIf.h"
+#include "factory/FactoryControllerIf.h"
 
 namespace COPA
 {
