@@ -11,7 +11,6 @@ set(CMAKE_CXX_STANDARD 17)
 file(GLOB SOURCES "src/*.cpp" "src/*/*.cpp")
 
 find_package(osal CONFIG REQUIRED)
-#find_package(runtime CONFIG REQUIRED)
 
 #Shared libraries
 set ( PROJECT_LINK_LIBS libosal.so )

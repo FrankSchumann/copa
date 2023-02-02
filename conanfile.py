@@ -4,7 +4,7 @@ from conan.tools.files import copy
 
 class copaRecipe(ConanFile):
     name = "copa"
-    version = "0.0.1"
+    version = "0.0.2"
 
     # Optional metadata
     license = "<Put the package license here>"
@@ -20,8 +20,13 @@ class copaRecipe(ConanFile):
     no_copy_source = True
 
     def package(self):
-        # This will also copy tlude" folder
-        copy(self, "*.h", self.source_folder, self.package_folder)
+        _src_component_folder = self.source_folder + '/include/component'
+        _src_factory_folder = self.source_folder + '/include/factory'
+        _dst_component_folder = self.package_folder + '/include/copa/component'
+        _dst_factory_folder = self.package_folder + '/include/copa/factory'
+
+        copy(self, "*.h", _src_component_folder, _dst_component_folder, keep_path=False)
+        copy(self, "*.h", _src_factory_folder, _dst_factory_folder, keep_path=False)
 
     def requirements(self):
         self.requires("osal/0.0.2")
