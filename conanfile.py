@@ -21,12 +21,17 @@ class copaRecipe(ConanFile):
 
     def package(self):
         _src_component_folder = self.source_folder + '/include/component'
-        _src_factory_folder = self.source_folder + '/include/factory'
         _dst_component_folder = self.package_folder + '/include/copa/component'
+        
+        _src_factory_folder = self.source_folder + '/include/factory'
         _dst_factory_folder = self.package_folder + '/include/copa/factory'
+
+        _src_mock_folder = self.source_folder + '/include/mock'
+        _dst_mock_folder = self.package_folder + '/include/copa/mock'
 
         copy(self, "*.h", _src_component_folder, _dst_component_folder, keep_path=False)
         copy(self, "*.h", _src_factory_folder, _dst_factory_folder, keep_path=False)
+        copy(self, "*.h", _src_mock_folder, _dst_mock_folder, keep_path=True)
 
     def requirements(self):
         self.requires("osal/0.0.2")
