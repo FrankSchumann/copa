@@ -3,9 +3,15 @@ Controller Platform main application
 
 ## Conan
 
+### Create
+Build and upload package to Conan cache.
+
+```bash
+osal-linux $ conan create .
+```
 ### Install
 Install conan packages and create files for building.
-Must be done first.
+Must be done before Build
 
 Creates build files (Makefile) in folder build.
 
@@ -17,23 +23,23 @@ copa $ conan install . --output-folder=build
 ```bash
 copa $ conan install . --output-folder=build -s build_type=Debug
 ```
-### Build
+## Build
 Build application copa
 
-#### Release
+### Release
 ```bash
 copa $ cd build
 copa/build $ cmake .. --preset release 
 copa/build $ make -j4 
 ```
-#### Release
+### Release
 ```bash
 copa $ cd build
 copa/build $ cmake .. --preset debug
 copa/build $ make -j4 
 ```
 
-### Run
+## Run
 run application copa
 
 ```bash
