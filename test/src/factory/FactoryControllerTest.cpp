@@ -1,7 +1,7 @@
 #include <gtest/gtest.h>
 
-#include "copa-pdk/factory/FactoryController.h"
-#include "copa-pdk/mock/factory/Factory.h"
+#include "factory/FactoryController.h"
+#include "mock/factory/Factory.h"
 
 TEST( FactoryControllerTest, Failed )
 {
@@ -10,7 +10,7 @@ TEST( FactoryControllerTest, Failed )
 
 TEST( FactoryControllerTest, subscribe )
 {
-	auto factory = std::make_shared< Mock::Factory >();
+	auto factory = std::make_shared< mock::core::Factory >();
 
     COPA::FactoryController factoryController;
 

@@ -1,6 +1,8 @@
 cmake_minimum_required( VERSION 3.15 )
 
-project( copaTest )
+project( copaTest 
+        VERSION 0.0.0.0
+        DESCRIPTION "core Plugin Test" )
 
 set( CMAKE_CXX_STANDARD 17 )
 
@@ -16,7 +18,7 @@ FetchContent_MakeAvailable( googletest )
 
 enable_testing()
 
-file( GLOB_RECURSE PROJECT_SOURCE_FILES src/*.cpp ../src/*.cpp )
+file( GLOB_RECURSE PROJECT_SOURCE_FILES src/*.cpp ../src/*/*.cpp )
 
 find_package( osal CONFIG REQUIRED )
 
