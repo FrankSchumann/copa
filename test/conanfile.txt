@@ -1,0 +1,6 @@
+[requires]
+osal/0.0.2
+
+[generators]
+CMakeDeps
+CMakeToolchain
