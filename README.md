@@ -3,11 +3,23 @@ Controller Platform main application
 
 ## Conan
 
+### Installation
+Installation of Conan 2.0
+
+```bash
+$ pip install conan --pre
+```
+
+Deinstallation
+```bash
+$ pip deinstall conan
+```
+
 ### Create
 Build and upload package to Conan cache.
 
 ```bash
-osal-linux $ conan create .
+copa $ conan create .
 ```
 ### Install
 Install conan packages and create files for building.
@@ -44,8 +56,26 @@ run application copa
 
 ```bash
 copa/build $ cd ..
-copa $ ./build/copa 
+copa $ ./build/copa
 ```
+
+## Test
+Build and execute GoogleTest.
+
+```bash
+copa/build/test $ conan install . --output-folder=build
+```
+```bash
+copa/build/test $ cd build
+copa/build/test $ cmake .. --preset=release
+```
+```bash
+copa/build/test $ cmake --build .
+```
+```bash
+copa/build/test $ ./copaTest
+```
+
 
 ## Clean
 Clean directory from all files which are builded and created.
