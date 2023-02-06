@@ -1,9 +1,9 @@
 # copa
 Controller Platform main application
 
-## Conan
+# Conan package manager
 
-### Installation
+## Installation
 Installation of Conan 2.0
 
 ```bash
@@ -15,43 +15,47 @@ Deinstallation
 $ pip deinstall conan
 ```
 
-### Create
+## Create
 Build and upload package to Conan cache.
 
 ```bash
 copa $ conan create .
 ```
-### Install
+## Install
 Install conan packages and create files for building.
 Must be done before Build
 
 Creates build files (Makefile) in folder build.
 
-#### Release
+### Release
 ```bash
 copa $ conan install . --output-folder=build
 ```
-#### Debug
+### Debug
 ```bash
 copa $ conan install . --output-folder=build -s build_type=Debug
 ```
-## Build
-Build application copa
+# CMake
+Run CMake to create Makefiles
 
-### Release
 ```bash
 copa $ cd build
+```
+
+## Release
+```bash
 copa/build $ cmake .. --preset release 
-copa/build $ make -j4 
 ```
-### Release
+## Release
 ```bash
-copa $ cd build
 copa/build $ cmake .. --preset debug
+```
+# Build application
+```bash
 copa/build $ make -j4 
 ```
 
-## Run
+# Run
 run application copa
 
 ```bash
@@ -59,7 +63,7 @@ copa/build $ cd ..
 copa $ ./build/copa
 ```
 
-## Test
+# Test
 Build and execute GoogleTest.
 
 ```bash
@@ -77,7 +81,7 @@ copa/build/test $ ./copaTest
 ```
 
 
-## Clean
+# Git
 Clean directory from all files which are builded and created.
 
 ```bash
