@@ -6,11 +6,21 @@ Controller Platform main application
 ## Installation
 Installation of Conan 2.0
 
+### Default  
 ```bash
-$ pip install conan --pre
+$ pip install conan
 ```
 
-Deinstallation
+### With Proxy
+```bash
+$ pip install --proxy http://<user>:<password>@<server>:<port> conan
+```
+Proxy Server at Schneider Electric
+```bash
+$ pip install --proxy http://<user>:<password>@165.225.72.40:80 conan
+```
+
+## Deinstallation
 ```bash
 $ pip deinstall conan
 ```
