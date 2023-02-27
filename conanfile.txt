@@ -1,0 +1,8 @@
+[requires]
+core/0.0.1
+osal/0.0.2
+runtime/0.0.5
+
+[generators]
+CMakeDeps
+CMakeToolchain

@@ -2,17 +2,13 @@
 #include <memory>
 
 #include "config.h"
-#include "component/ComponentController.h"
-#include "factory/FactoryController.h"
-#include "osal/Info.h"
-#include "plugin/PluginController.h"
 
-class RuntimeAdapterIf : public COPA::ComponentIf
-{
-   public:
-    virtual void startApplications() const = 0;
-    virtual void stopApplications() const = 0;
-};
+#include <core/plugin/PluginController.h>
+#include <core/component/ComponentController.h>
+#include <core/factory/FactoryController.h>
+#include <osal/Info.h>
+#include <runtime/RuntimeAdapterIf.h>
+
 
 
 int main( int argc, char *argv[] )
@@ -27,45 +23,45 @@ int main( int argc, char *argv[] )
 
     std::string const pluginFolder( "plugin" );
 
-    COPA::PluginController pluginController( pluginFolder );
+    std::shared_ptr<core::PluginControllerIf> pluginController = std::make_shared<core::PluginController>( pluginFolder );
 
-    pluginController.loadPlugins();
+    pluginController->loadPlugins();
 
-    pluginController.list();
+    pluginController->list();
 
-    std::shared_ptr< COPA::FactoryController > const factoryController = std::make_shared< COPA::FactoryController >();
+    std::shared_ptr< core::FactoryController > const factoryController = std::make_shared< core::FactoryController >();
 
     factoryController->list();
 
-    COPA::ComponentController componentController;
+    core::ComponentController componentController;
 
-    componentController.create( "RuntimeController", "Mickey Mouse" );
-    componentController.create( "RuntimeAdapter", "Donald Duck" );
+    // componentController.create( "RuntimeController", "Mickey Mouse" );
+    // componentController.create( "RuntimeAdapter", "Donald Duck" );
 
     componentController.create( "CodesysAdapter", "Goofy" );
-    componentController.create( "CodesysAdapter", "Daisy" );
-    componentController.create( "EcoStruxureAdapter", "Pluto" );
-    componentController.create( "EcoStruxureAdapter", "Ellroy" );
+    // componentController.create( "CodesysAdapter", "Daisy" );
+    // componentController.create( "EcoStruxureAdapter", "Pluto" );
+    // componentController.create( "EcoStruxureAdapter", "Ellroy" );
 
     componentController.list();
     std::cout << std::endl;
 
-    std::shared_ptr< COPA::ComponentIf > cmpDonaldDuck = componentController.get( "RuntimeAdapter", "Donald Duck" );
+    // auto cmpDonaldDuck = componentController.get( "RuntimeAdapter", "Donald Duck" );
 
-    std::cout << "cmpDonaldDuck getName: " << cmpDonaldDuck->getName() << std::endl;
+    // std::cout << "cmpDonaldDuck getName: " << cmpDonaldDuck->getName() << std::endl;
 
-    std::shared_ptr< RuntimeAdapterIf > runtimeAdpaterDonaldDuck = std::reinterpret_pointer_cast< RuntimeAdapterIf >( cmpDonaldDuck );
+    // std::shared_ptr< RuntimeAdapterIf > runtimeAdpaterDonaldDuck = std::reinterpret_pointer_cast< RuntimeAdapterIf >( cmpDonaldDuck );
 
-    std::cout << "startApplicatons" << std::endl;
-    runtimeAdpaterDonaldDuck->startApplications();
-    std::cout << std::endl;
+    // std::cout << "startApplicatons" << std::endl;
+    // runtimeAdpaterDonaldDuck->startApplications();
+    // std::cout << std::endl;
 
-    std::cout << "erase Component" << std::endl;
-    componentController.erase( "EcoStruxureAdapter", "Pluto" );
+    // std::cout << "erase Component" << std::endl;
+    // componentController.erase( "EcoStruxureAdapter", "Pluto" );
 
-    std::cout << "components after erase" << std::endl << std::endl;
-    componentController.list();
-    std::cout << std::endl;
+    // std::cout << "components after erase" << std::endl << std::endl;
+    // componentController.list();
+    // std::cout << std::endl;
 
     std::cout << "before shutdown" << std::endl;
     factoryController->list();
@@ -75,8 +71,11 @@ int main( int argc, char *argv[] )
 
     std::cout << "shutdown" << std::endl;
 
-    pluginController.closePlugins();
+    pluginController->closePlugins();
     std::cout << std::endl;
+
+    // pluginController->closePlugin("codesys");
+    // std::cout << std::endl;
 
     std::cout << "after shutdown" << std::endl;
     factoryController->list();
