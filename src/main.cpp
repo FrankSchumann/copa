@@ -35,13 +35,13 @@ int main( int argc, char *argv[] )
 
     core::ComponentController componentController;
 
-    // componentController.create( "RuntimeController", "Mickey Mouse" );
+    componentController.create( "RuntimeController", "Mickey Mouse" );
     // componentController.create( "RuntimeAdapter", "Donald Duck" );
 
     componentController.create( "CodesysAdapter", "Goofy" );
     // componentController.create( "CodesysAdapter", "Daisy" );
-    // componentController.create( "EcoStruxureAdapter", "Pluto" );
-    // componentController.create( "EcoStruxureAdapter", "Ellroy" );
+    //componentController.create( "EcoStruxureAdapter", "Pluto" );
+    //componentController.create( "EcoStruxureAdapter", "Ellroy" );
 
     componentController.list();
     std::cout << std::endl;
@@ -71,11 +71,20 @@ int main( int argc, char *argv[] )
 
     std::cout << "shutdown" << std::endl;
 
-    pluginController->closePlugins();
+    // pluginController->closePlugins();
+    // std::cout << std::endl;
+
+    pluginController->list();
     std::cout << std::endl;
 
-    // pluginController->closePlugin("codesys");
-    // std::cout << std::endl;
+    pluginController->closePlugin("codesys");
+    std::cout << std::endl;
+
+    pluginController->list();
+    std::cout << std::endl;
+
+    pluginController->closePlugin("runtime");
+    std::cout << std::endl;
 
     std::cout << "after shutdown" << std::endl;
     factoryController->list();
