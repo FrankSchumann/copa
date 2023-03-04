@@ -2,6 +2,7 @@
 #include <memory>
 
 #include "config.h"
+#include "Banner.h"
 
 #include <core/plugin/PluginController.h>
 #include <core/component/ComponentController.h>
@@ -14,17 +15,7 @@
 
 int main( int argc, char *argv[] )
 {
-    std::cout << "COPA - " << COPA_DESCRIPTION << std::endl;
-    std::cout << "Version: " << COPA_VERSION << std::endl;
-    std::cout << std::endl;
-
-    std::cout << "CORE - " << core::Info::getDescription() << std::endl;
-    std::cout << "Version: " << core::Info::getVersion() << std::endl;
-    std::cout << std::endl;
-
-    std::cout << "OSAL - " << osal::Info::getDescription() << std::endl;
-    std::cout << "Version: " << osal::Info::getVersion() << std::endl;
-    std::cout << std::endl;
+    copa::Banner::show();
 
     std::string const pluginFolder( "plugin" );
 

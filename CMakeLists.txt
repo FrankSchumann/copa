@@ -6,7 +6,7 @@ project( copa
 
 set( CMAKE_CXX_STANDARD 17 )
 
-file( GLOB PROJECT_SOURCE_FILES "src/main.cpp" )
+file( GLOB_RECURSE PROJECT_SOURCE_FILES src/*.cpp )
 
 find_package( core CONFIG REQUIRED )
 find_package( osal CONFIG REQUIRED )
