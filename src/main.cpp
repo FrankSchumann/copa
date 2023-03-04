@@ -6,6 +6,7 @@
 #include <core/plugin/PluginController.h>
 #include <core/component/ComponentController.h>
 #include <core/factory/FactoryController.h>
+#include <core/Info.h>
 #include <osal/Info.h>
 #include <runtime/RuntimeAdapterIf.h>
 
@@ -15,6 +16,10 @@ int main( int argc, char *argv[] )
 {
     std::cout << "COPA - " << APPLICATION_DESCRIPTION << std::endl;
     std::cout << "Version: " << APPLICATION_VERSION << std::endl;
+    std::cout << std::endl;
+
+    std::cout << "CORE - " << core::Info::getDescription() << std::endl;
+    std::cout << "Version: " << core::Info::getVersion() << std::endl;
     std::cout << std::endl;
 
     std::cout << "OSAL - " << osal::Info::getDescription() << std::endl;
