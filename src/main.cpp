@@ -36,25 +36,27 @@ int main( int argc, char *argv[] )
     core::ComponentController componentController;
 
     componentController.create( "RuntimeController", "Mickey Mouse" );
-    // componentController.create( "RuntimeAdapter", "Donald Duck" );
+    
+    componentController.create( "RuntimeAdapter", "Donald Duck" );
 
     componentController.create( "CodesysAdapter", "Goofy" );
-    // componentController.create( "CodesysAdapter", "Daisy" );
+    componentController.create( "CodesysAdapter", "Daisy" );
+    
     //componentController.create( "EcoStruxureAdapter", "Pluto" );
     //componentController.create( "EcoStruxureAdapter", "Ellroy" );
 
     componentController.list();
     std::cout << std::endl;
 
-    // auto cmpDonaldDuck = componentController.get( "RuntimeAdapter", "Donald Duck" );
+    auto const cmpDonaldDuck = componentController.get( "RuntimeAdapter", "Donald Duck" );
 
-    // std::cout << "cmpDonaldDuck getName: " << cmpDonaldDuck->getName() << std::endl;
+    std::cout << "cmpDonaldDuck getName: " << cmpDonaldDuck->getName() << std::endl << std::endl;
 
-    // std::shared_ptr< RuntimeAdapterIf > runtimeAdpaterDonaldDuck = std::reinterpret_pointer_cast< RuntimeAdapterIf >( cmpDonaldDuck );
+    std::shared_ptr< RuntimeAdapterIf > runtimeAdpaterDonaldDuck = std::reinterpret_pointer_cast< RuntimeAdapterIf >( cmpDonaldDuck );
 
-    // std::cout << "startApplicatons" << std::endl;
-    // runtimeAdpaterDonaldDuck->startApplications();
-    // std::cout << std::endl;
+    std::cout << "startApplicatons" << std::endl;
+    runtimeAdpaterDonaldDuck->startApplications();
+    std::cout << std::endl;
 
     // std::cout << "erase Component" << std::endl;
     // componentController.erase( "EcoStruxureAdapter", "Pluto" );
