@@ -14,8 +14,8 @@
 
 int main( int argc, char *argv[] )
 {
-    std::cout << "COPA - " << APPLICATION_DESCRIPTION << std::endl;
-    std::cout << "Version: " << APPLICATION_VERSION << std::endl;
+    std::cout << "COPA - " << COPA_DESCRIPTION << std::endl;
+    std::cout << "Version: " << COPA_VERSION << std::endl;
     std::cout << std::endl;
 
     std::cout << "CORE - " << core::Info::getDescription() << std::endl;
