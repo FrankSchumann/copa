@@ -42,8 +42,8 @@ int main( int argc, char *argv[] )
     componentController.create( "CodesysAdapter", "Goofy" );
     componentController.create( "CodesysAdapter", "Daisy" );
     
-    //componentController.create( "EcoStruxureAdapter", "Pluto" );
-    //componentController.create( "EcoStruxureAdapter", "Ellroy" );
+    componentController.create( "EcoStruxureAdapter", "Pluto" );
+    componentController.create( "EcoStruxureAdapter", "Ellroy" );
 
     componentController.list();
     std::cout << std::endl;
@@ -58,12 +58,12 @@ int main( int argc, char *argv[] )
     runtimeAdpaterDonaldDuck->startApplications();
     std::cout << std::endl;
 
-    // std::cout << "erase Component" << std::endl;
-    // componentController.erase( "EcoStruxureAdapter", "Pluto" );
+    std::cout << "erase Component" << std::endl;
+    componentController.erase( "EcoStruxureAdapter", "Pluto" );
 
-    // std::cout << "components after erase" << std::endl << std::endl;
-    // componentController.list();
-    // std::cout << std::endl;
+    std::cout << "components after erase" << std::endl << std::endl;
+    componentController.list();
+    std::cout << std::endl;
 
     std::cout << "before shutdown" << std::endl;
     factoryController->list();
@@ -80,6 +80,9 @@ int main( int argc, char *argv[] )
     std::cout << std::endl;
 
     pluginController->closePlugin("codesys");
+    std::cout << std::endl;
+
+    pluginController->closePlugin("ecostruxure");
     std::cout << std::endl;
 
     pluginController->list();
