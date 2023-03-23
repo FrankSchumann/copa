@@ -2,57 +2,73 @@
 #include <memory>
 
 #include "config.h"
-#include "component/ComponentController.h"
-#include "factory/FactoryController.h"
-#include "osal/Info.h"
-#include "plugin/PluginController.h"
+#include "Banner.h"
 
-class RuntimeAdapterIf : public COPA::ComponentIf
-{
-   public:
-    virtual void startApplications() const = 0;
-    virtual void stopApplications() const = 0;
-};
-
+#include <core/plugin/PluginController.h>
+#include <core/component/ComponentController.h>
+#include <core/factory/FactoryController.h>
+#include <core/Info.h>
+#include <osal/Info.h>
+#include <runtime/RuntimeAdapterIf.h>
 
 int main( int argc, char *argv[] )
 {
-    std::cout << "COPA - " << APPLICATION_DESCRIPTION << std::endl;
-    std::cout << "Version: " << APPLICATION_VERSION << std::endl;
-    std::cout << std::endl;
+    copa::Banner::show();
 
-    std::cout << "OSAL - " << osal::Info::getDescription() << std::endl;
-    std::cout << "Version: " << osal::Info::getVersion() << std::endl;
+    std::cout << "++++++++++++++++++++++++++++" << std::endl;
+    std::cout << "+++ load Plugins - start +++" << std::endl;
+    std::cout << "++++++++++++++++++++++++++++" << std::endl;
     std::cout << std::endl;
 
     std::string const pluginFolder( "plugin" );
 
-    COPA::PluginController pluginController( pluginFolder );
+    std::shared_ptr<core::PluginControllerIf> pluginController = std::make_shared<core::PluginController>( pluginFolder );
 
-    pluginController.loadPlugins();
+    pluginController->loadPlugins();
 
-    pluginController.list();
+    pluginController->list();
 
-    std::shared_ptr< COPA::FactoryController > const factoryController = std::make_shared< COPA::FactoryController >();
+    std::shared_ptr< core::FactoryController > const factoryController = std::make_shared< core::FactoryController >();
 
     factoryController->list();
 
-    COPA::ComponentController componentController;
+    std::cout << "++++++++++++++++++++++++++" << std::endl;
+    std::cout << "+++ load Plugins - end +++" << std::endl;
+    std::cout << "++++++++++++++++++++++++++" << std::endl;
+    std::cout << std::endl;
+
+    std::cout << "+++++++++++++++++++++++++++++++++" << std::endl;
+    std::cout << "+++ create Components - start +++" << std::endl;
+    std::cout << "+++++++++++++++++++++++++++++++++" << std::endl;
+    std::cout << std::endl;
+
+    core::ComponentController componentController;
 
     componentController.create( "RuntimeController", "Mickey Mouse" );
+    
     componentController.create( "RuntimeAdapter", "Donald Duck" );
 
     componentController.create( "CodesysAdapter", "Goofy" );
     componentController.create( "CodesysAdapter", "Daisy" );
+    
     componentController.create( "EcoStruxureAdapter", "Pluto" );
     componentController.create( "EcoStruxureAdapter", "Ellroy" );
 
     componentController.list();
+    
+    std::cout << "+++++++++++++++++++++++++++++++" << std::endl;
+    std::cout << "+++ create Components - end +++" << std::endl;
+    std::cout << "+++++++++++++++++++++++++++++++" << std::endl;
     std::cout << std::endl;
 
-    std::shared_ptr< COPA::ComponentIf > cmpDonaldDuck = componentController.get( "RuntimeAdapter", "Donald Duck" );
+    std::cout << "++++++++++++++++++++++++++++++++++++++++" << std::endl;
+    std::cout << "+++ interact with Components - start +++" << std::endl;
+    std::cout << "++++++++++++++++++++++++++++++++++++++++" << std::endl;
+    std::cout << std::endl;
 
-    std::cout << "cmpDonaldDuck getName: " << cmpDonaldDuck->getName() << std::endl;
+    auto const cmpDonaldDuck = componentController.get( "RuntimeAdapter", "Donald Duck" );
+
+    std::cout << "cmpDonaldDuck getName: " << cmpDonaldDuck->getName() << std::endl << std::endl;
 
     std::shared_ptr< RuntimeAdapterIf > runtimeAdpaterDonaldDuck = std::reinterpret_pointer_cast< RuntimeAdapterIf >( cmpDonaldDuck );
 
@@ -63,25 +79,42 @@ int main( int argc, char *argv[] )
     std::cout << "erase Component" << std::endl;
     componentController.erase( "EcoStruxureAdapter", "Pluto" );
 
-    std::cout << "components after erase" << std::endl << std::endl;
     componentController.list();
+
+    std::cout << "++++++++++++++++++++++++++++++++++++++" << std::endl;
+    std::cout << "+++ interact with Components - end +++" << std::endl;
+    std::cout << "++++++++++++++++++++++++++++++++++++++" << std::endl;
+    std::cout << std::endl;
+
+    std::cout << "+++++++++++++++++++++++++++++" << std::endl;
+    std::cout << "+++ shutdown COPA - start +++" << std::endl;
+    std::cout << "+++++++++++++++++++++++++++++" << std::endl;
     std::cout << std::endl;
 
     std::cout << "before shutdown" << std::endl;
+    std::cout << std::endl;
+
     factoryController->list();
 
     componentController.list();
+
+    std::cout << "closePlugin(\"codesys\")" << std::endl << std::endl;
+    pluginController->closePlugin("codesys");
     std::cout << std::endl;
 
-    std::cout << "shutdown" << std::endl;
+    std::cout << "closePlugins()" << std::endl << std::endl;
+    pluginController->closePlugins();
 
-    pluginController.closePlugins();
+    std::cout << "+++++++++++++++++++++++++++" << std::endl;
+    std::cout << "+++ shutdown COPA - end +++" << std::endl;
+    std::cout << "+++++++++++++++++++++++++++" << std::endl;
     std::cout << std::endl;
-
-    std::cout << "after shutdown" << std::endl;
-    factoryController->list();
 
     componentController.list();
+
+    factoryController->list();
+
+    pluginController->list();
 
     return 0;
 }
